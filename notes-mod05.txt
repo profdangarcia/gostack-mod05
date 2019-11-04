@@ -21,3 +21,40 @@ yarn add eslint -D
 yarn eslint --init
 // escolher as opções desejadas
 // excluir o arquivo do NPM e rodar o comando yarn
+// adicionar dependencias do prettier para o eslint
+yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D
+
+//alterações no arquivo eslintrc.js
+extends: 'prettier', 'prettier/react'
+parser: 'babel-eslint'   antes de parserOptions
+plugins: 'prettier'
+//sobrescrever regras do padrão airbnb no arquivo eslintrc
+rules: {
+    'prettier/prettier': 'error',
+    'react/jsx-filename-extension': [
+      'warn',
+      { extensions: ['.jsx', '.js']}
+    ],
+    'import/prefer-default-export': 'off',
+  },
+
+//novo arquivo na raiz chamado .prettierrc
+
+
+################################ ROTAS NO REACT
+//dependencia
+yarn add react-router-dom
+//novo arquivo chamado routes.js em src
+//nova pasta em src chamada pages
+//nova pasta Main em pages com um arquivo index.js dentro
+//nova pasta Repository em pages com um arquivo index.js dentro
+
+//importar as rotas no App.js
+//App.js retorna as rotas
+
+############################## STYLED COMPONENTS
+//dependencia
+yarn add styled-components
+//novo arquivo em /src/pages/Main chamado styles.js
+//Utilizar Extensão do VSCode chamada styled components
+//importar styled components no componente desejado
