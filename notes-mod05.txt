@@ -1,3 +1,23 @@
 ###################### Criando projeto do zero
 //instalação das dependencias prontas
 yarn create react-app <nome>
+// exclusão das configurações do eslint do package.json para configurar do zero
+// remover comentarios do arquivo index.html na pasta public
+// remover importação de manifest do arquivo index.html
+// remover o arquivo manifest.json da pasta public
+
+// arquivos desnecessarios em src
+	App.css
+	App.test.js
+	index.css
+	serviceWorker.js
+
+######################## Configurações padronização de código
+// necessário instalar Editor Config no VScode
+// adicionar arquivo .editorconfig na raiz e realizar modificações
+// adicionar eslint como dependencia de desenvolvimento
+yarn add eslint -D
+// rodar o comando eslint --init
+yarn eslint --init
+// escolher as opções desejadas
+// excluir o arquivo do NPM e rodar o comando yarn
