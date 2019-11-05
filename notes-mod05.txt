@@ -58,3 +58,8 @@ yarn add styled-components
 //novo arquivo em /src/pages/Main chamado styles.js
 //Utilizar Extensão do VSCode chamada styled components
 //importar styled components no componente desejado
+
+############################## GLOBAL STYLES
+//nova pasta chamada styles em src
+//novo arquivo na pasta syles chamado global.js
+//importar estilos globais em App.js

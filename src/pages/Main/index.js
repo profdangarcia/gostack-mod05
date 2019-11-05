@@ -4,9 +4,9 @@ import { Title } from './styles';
 
 export default function Main() {
   return (
-    <Title error>
-      Main
-      <small>Menor</small>
+    <Title error={false}>
+      Hello World
+      {/* <small>Menor</small> */}
     </Title>
   );
 }
