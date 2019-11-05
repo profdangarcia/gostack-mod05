@@ -63,3 +63,14 @@ yarn add styled-components
 //nova pasta chamada styles em src
 //novo arquivo na pasta syles chamado global.js
 //importar estilos globais em App.js
+
+############################ Estilizando Main Page
+//pacote de icones
+yarn add react-icons
+
+
+########################### Utilizando API do GitHub
+// dependencia axios
+yarn add axios
+// nova pasta chamada services em /src com arquivo api.js dentro
+
