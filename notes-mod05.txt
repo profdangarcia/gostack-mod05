@@ -82,4 +82,13 @@ import { Link } from 'react-router-dom';
 ########################## Carregando dados da API
 // modificação do componente Repository para class Component
 
+########################## Definindo propTypes
+// adicionar a dependencia prop-types
+yarn add prop-types
+
+########################## Exibindo Repositórios
+// nova pasta chamada components em SRC com uma pasta chamada Container e um index.js nele
+// basicamente o componente Container será utilizado em outras partes da aplicação
+
+
 
