@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import api from '../../services/api';
 
-import { Loading, Owner, IssueList } from './styles';
+import { Loading, Owner, IssueList, Filter, NavButton, NavBox } from './styles';
 import Container from '../../components/Container';
 
 export default class Repository extends Component {
@@ -11,6 +12,8 @@ export default class Repository extends Component {
     repository: {},
     issues: [],
     loading: true,
+    checked: 'open',
+    page: 1,
   };
 
   async componentDidMount() {
@@ -34,8 +37,54 @@ export default class Repository extends Component {
     });
   }
 
+  async IssuesHandler() {
+    const { page, checked } = this.state;
+    const { match } = this.props;
+    const repoName = decodeURIComponent(match.params.repository);
+
+    const issues = await api.get(`/repos/${repoName}/issues`, {
+      params: {
+        state: checked,
+        per_page: '5',
+        page,
+      },
+    });
+
+    return issues;
+  }
+
+  async handleFilter(filter) {
+    this.setState({
+      loading: true,
+      checked: filter,
+    });
+
+    const issues = await this.IssuesHandler();
+
+    this.setState({
+      loading: false,
+      issues: issues.data,
+    });
+  }
+
+  async handleNavigation(operation) {
+    const { page } = this.state;
+
+    this.setState({
+      loading: true,
+      page: operation === 'sub' ? page - 1 : page + 1,
+    });
+
+    const issues = await this.IssuesHandler();
+
+    this.setState({
+      loading: false,
+      issues: issues.data,
+    });
+  }
+
   render() {
-    const { repository, issues, loading } = this.state;
+    const { repository, issues, loading, checked, page } = this.state;
 
     if (loading) {
       return <Loading>Carregando...</Loading>;
@@ -51,6 +100,33 @@ export default class Repository extends Component {
         </Owner>
 
         <IssueList>
+          <Filter>
+            <strong>Filtro:</strong>
+            <input
+              type="radio"
+              name="filter"
+              value="all"
+              onChange={() => this.handleFilter('all')}
+              checked={checked === 'all' ? 'checked' : ''}
+            />
+            All
+            <input
+              type="radio"
+              name="filter"
+              value="open"
+              onChange={() => this.handleFilter('open')}
+              checked={checked === 'open' ? 'checked' : ''}
+            />
+            Open
+            <input
+              type="radio"
+              name="filter"
+              value="closed"
+              onChange={() => this.handleFilter('closed')}
+              checked={checked === 'closed' ? 'checked' : ''}
+            />
+            Closed
+          </Filter>
           {issues.map(issue => (
             <li key={String(issue.id)}>
               <img src={issue.user.avatar_url} alt={issue.user.login} />
@@ -65,6 +141,16 @@ export default class Repository extends Component {
               </div>
             </li>
           ))}
+          <NavBox>
+            <NavButton page={page} onClick={() => this.handleNavigation('sub')}>
+              <FaArrowLeft color="#fff" size={12} />
+              <strong>Anterior</strong>
+            </NavButton>
+            <NavButton onClick={() => this.handleNavigation('plus')}>
+              <strong>Próximo</strong>
+              <FaArrowRight color="#fff" size={12} />
+            </NavButton>
+          </NavBox>
         </IssueList>
       </Container>
     );
