@@ -74,3 +74,12 @@ yarn add react-icons
 yarn add axios
 // nova pasta chamada services em /src com arquivo api.js dentro
 
+########################### Utilizando Rotas
+// importação no arquivo index.js do Main
+import { Link } from 'react-router-dom';
+// alteração no arquivo routes.js para a rota /repository
+
+########################## Carregando dados da API
+// modificação do componente Repository para class Component
+
+

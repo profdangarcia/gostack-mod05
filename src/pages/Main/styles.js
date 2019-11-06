@@ -85,10 +85,10 @@ export const List = styled.ul`
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
 
-  & + li {
-    border-top: 1px solid #eee;
+    & + li {
+      border-top: 1px solid #eee;
+    }
   }
 
   a {
